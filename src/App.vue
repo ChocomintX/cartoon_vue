@@ -1,28 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    // import MyCom from "@/components/MyCom";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: 'App',
+        components: {
+            // HelloWorld,
+            // MyCom,
+        },
+        computed:{
+            username(){
+                return this.$route
+            }
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    #app {
+        text-align: center;
+    }
+    body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 </style>
